@@ -8,7 +8,8 @@ import EditEventForm from './EditEventForm.vue';
 import DeleteConfirmationForm from './DeleteConfirmationForm.vue';
 import PaginationBase from '@/components/base/PaginationBase.vue';
 
-// const router = useRouter();
+
+const router = useRouter();
 // const events = ref([]); 
 
 const eventStore = useEventStore();
@@ -39,6 +40,10 @@ const editEvent = (id) => {
 const addNewEvent = () => {
   router.push({ name: 'addeventform' }); 
 };
+
+const logout = () => {
+  router.push({ name: '/home'});
+}
 </script>
 
 <template>

@@ -9,7 +9,6 @@ export const useEventStore = defineStore('events', () => {
     const isLoading = ref(false);
     const totalPages = ref(0);
 
-    // Asegúrate de que esta URL sea la correcta
     const eventsEndpoint = `${import.meta.env.VITE_API_ENDPOINT}/events`;
 
     const repo = new EventsRepository(eventsEndpoint);
@@ -39,5 +38,19 @@ export const useEventStore = defineStore('events', () => {
         }
     }
 
-    return {events, featuredEvents, isLoading, totalPages, setEvents, fetchFeaturedEvents };
+    async function fetchPastEvents(page = 0, size = 6) {
+        isLoading.value = true;
+        try {
+            const response = await service.getEvents(page, size); 
+            const now = new Date();
+            pastEvents.value = response.events.filter(event => new Date(event.date) < now);
+            totalPages.value = response.totalPages; 
+        } catch (error) {
+            console.error('Error fetching past events:', error);
+        } finally {
+            isLoading.value = false;
+        }
+    }
+
+    return {events, featuredEvents, pastEvents, isLoading, totalPages, setEvents, fetchFeaturedEvents };
 });

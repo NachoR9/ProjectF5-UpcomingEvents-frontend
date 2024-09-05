@@ -2,6 +2,8 @@
 
 import AllEventsList from '@/components/homepage/AllEventsList.vue';
 import HomeSlider from '@/components/homepage/HomeSlider.vue';
+import PastEventsList from '@/components/homepage/PastEventsList.vue';
+
 
 
 </script>
@@ -10,7 +12,7 @@ import HomeSlider from '@/components/homepage/HomeSlider.vue';
   <main>
     <HomeSlider/>
     <AllEventsList/>
- 
+    <PastEventsList/>
   </main>
 
 </template>
